@@ -1,0 +1,24 @@
+<body>
+<br>
+<b><h1 align="center">       </h1> </b>
+
+<div style="width:350px; margin:0 auto;">
+
+
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Comment:</b>
+  <%= @comment_vote.comment %>
+</p>
+
+<p>
+  <b>User:</b>
+  <%= @comment_vote.user %>
+</p>
+
+
+<%= link_to 'Edit', edit_comment_vote_path(@comment_vote) %> |
+<%= link_to 'Back', comment_votes_path %>
+ </div>
+</body>

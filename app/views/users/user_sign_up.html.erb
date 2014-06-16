@@ -1,0 +1,54 @@
+<body>
+<br><br><br>
+<h1 align="center">ENTER SIGN UP DETAILS</h1>     <br>
+
+<div style="width:350px; margin:0 auto;">
+
+<%= form_for :user ,url: {action: "create_user"} do |f|%>
+      <% if @user.errors.any? %>
+          <div id="error_explanation">
+            <h2>
+              <%= pluralize(@user.errors.count, "error")%>
+              prohibited this user from being saved:
+            </h2>
+            <p>There were problems with the following fields:</p>
+            <ul>
+              <% @user.errors.full_messages.each do |message| %>
+                  <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
+
+      <% end %>
+
+ <p>
+  <%= f.label :unity_id, "Unity Id" %>
+  <%= f.text_field :unity_id %>
+</p>
+
+<p>
+   <%= f.label :first_name, "First Name" %>
+   <%= f.text_field :first_name %>
+</p>
+
+<p>
+    <%= f.label :last_name, "Last Name" %>
+    <%= f.text_field :last_name %>
+</p>
+
+<p>
+    <%= f.label :password, "Password" %>
+    <%= f.password_field :password %>
+</p>
+
+<p>
+  <%= f.label :password_confirmation, "Confirm Password" %>
+  <%= f.password_field :password_confirmation %>
+</p>
+
+<p>
+    <%= f.submit "Sign up" %>
+</p>
+<%end%>
+    </DIV>
+</BODY>

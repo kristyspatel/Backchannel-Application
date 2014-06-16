@@ -1,0 +1,33 @@
+<body>
+<br>
+<h1 align="center">   </h1>
+
+<div style="width:350px; margin:0 auto;">
+
+<%= form_for(@post_vote) do |f| %>
+  <% if @post_vote.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@post_vote.errors.count, "error") %> prohibited this post_vote from being saved:</h2>
+
+      <ul>
+      <% @post_vote.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :post %><br />
+    <%= f.text_field :post %>
+  </div>
+  <div class="field">
+    <%= f.label :user %><br />
+    <%= f.text_field :user %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+ </div>
+</body>

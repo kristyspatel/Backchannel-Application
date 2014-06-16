@@ -1,0 +1,128 @@
+<body>
+<br>
+<h1 align="center">POST DETAILS</h1>
+<div style="width:350px; margin:0 auto;">
+<p id="notice" xmlns="http://www.w3.org/1999/html"><%= notice %></p>
+
+<p>
+  <b> USER: </b>
+    <%= @post.user.first_name if @post.user%>
+    <%= @post.user.last_name if @post.user%>
+</p>
+
+<p> <b>Description:</b>
+  <b><%= @post.title %></b>
+</p>
+
+<p>
+  <%= @post.post_desc %>
+</p>
+
+
+
+<p>
+<b>Posted on: </b>
+  <%= @post.post_date.to_date %>
+</p>
+
+<p>
+  <b>Tag:</b>
+  <%= @post.tag %>
+</p>
+
+<p>
+  <b>Category:</b>
+  <%= @post.category.category %>
+</p>
+<p>
+  <%if !current_user.nil? %>
+      <%if @post.user != current_user%>
+          <% if !@has_liked.nil? %>
+              <%= link_to 'Unlike', unlike_post_path(@post.id)%>  &nbsp;
+          <%else%>
+              <%= link_to 'Like', like_post_path(@post.id)%>  &nbsp;
+          <%end%>
+      <%end%>
+  <% end %>
+
+ <%if @comments.count != 0%>
+     <b> <%= pluralize(@comments.count, "Comment") %></b>   &nbsp;&nbsp;
+  <%else%>
+      0 comments
+  <%end%>
+  <%if @likes != 0%>
+     <b> <%= pluralize(@likes, "Vote") %></b>  &nbsp;&nbsp;
+  <%else%>
+      0 votes
+  <%end%>
+   <br> <br>
+ <b><u> Comments:</u></b> <br>
+  <% @comments.each do |this_comment| %>
+    <p><b><%= this_comment.user.first_name %>
+        <%= this_comment.user.last_name %>  </b>
+    </p>
+    <p>
+      <%= this_comment.comment_desc %>
+    </p>
+    <p>
+	  <%= this_comment.comment_desc %>   &nbsp;&nbsp;&nbsp;&nbsp;      
+		<%if !current_user.nil?%>
+      <%if this_comment.user != current_user%>
+        <%if @comment_likes[this_comment.id].nil? %>
+            <%=link_to 'Like', like_comment_path(this_comment.id)%>
+        <%else%>
+            <%=link_to 'Unlike', unlike_comment_path(this_comment.id)%>
+        <%end%>
+          <%= pluralize(this_comment.votes.count(),"vote") %>
+      <%end%>
+      <%if this_comment.user == current_user%>
+        <td><%= link_to 'Delete Comment',delete_comment_path(this_comment), data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Edit Comment', edit_comment_path(this_comment) %></td>
+
+      <%end%>
+    </p>
+        <%end%>
+   <%end%>
+</p>
+<%if !current_user.nil? %>
+    <div class="row">
+    <div class="span6 offset3">
+    <%= form_for(@comment) do |f| %>
+
+        <% if @comment.errors.any? %>
+            <div id="error_explanation">
+              <h2><%= pluralize(@comment.errors.count, "error") %> prohibited this comment from being saved:</h2>
+
+              <ul>
+                <% @comment.errors.full_messages.each do |msg| %>
+                    <li><%= msg %></li>
+                <% end %>
+              </ul>
+            </div>
+        <% end %>
+
+        <%= f.label :comment_desc %>
+        <%= f.text_field :comment_desc %>
+
+        <%= f.hidden_field :post, value: @post.id %>
+    <%end%>
+  <% end %>
+  </div>
+</div>
+
+<p>
+  <%if @post.user == current_user%>
+    <%= link_to 'Edit Post', edit_post_path(@post) %>
+<%end%>
+
+<%if !current_user.nil? && (current_user.role =='A' || current_user.role=='S') %>
+    <td><%= link_to 'Delete Post', @post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+<%else%>
+    <%if @post.user ==current_user%>
+        <td><%= link_to 'Delete Post', @post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <%end%>
+<%end%>
+</p>
+<%= link_to 'Back', '/welcome' %>
+    </DIV>
+</BODY>

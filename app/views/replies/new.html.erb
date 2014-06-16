@@ -1,0 +1,35 @@
+<body>
+<br>
+<h1 align="center">New Reply</h1>
+
+<div style="width:350px; margin:0 auto;">
+
+<% provide(:title, 'NEW REPLY') %>
+
+
+<div class="row">
+  <div class="span6 offset3">
+    <%= form_for(@reply) do |f| %>
+
+        <% if @reply.errors.any? %>
+            <div id="error_explanation">
+              <h2><%= pluralize(@reply.errors.count, "error") %> prohibited this reply from being saved:</h2>
+
+              <ul>
+                <% @reply.errors.full_messages.each do |msg| %>
+                    <li><%= msg %></li>
+                <% end %>
+              </ul>
+            </div>
+        <% end %>
+        <%= f.label :reply %>
+        <%= f.text_field :reply %>
+
+        <%= f.submit "Submit", class: "btn btn-large btn-primary" %>
+    <% end %>
+  </div>
+</div>
+
+<%= link_to 'Back', replies_path %>
+ </div>
+</body>

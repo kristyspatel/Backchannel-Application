@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+post_one:
+  post_desc: This is a post
+  user:  user_one
+  post_date: <%= Time.now.to_s(:db) %>
+  tag: tag_one
+  category:  category_one
+  created_at: <%= Time.now.to_s(:db) %>
+  updated_at: <%= Time.now.to_s(:db) %>
+
+post_two:
+  post_desc: This is a post too!
+  user:  user_two
+  post_date: <%= Time.now.to_s(:db) >
+  tag: tag_two
+  category: category_two
+  created_at: <%= Time.now.to_s(:db) %>
+  updated_at: <%= Time.now.to_s(:db) %>

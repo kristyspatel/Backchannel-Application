@@ -1,0 +1,25 @@
+<%= form_for :login, url: {action: 'authenticate_user'} do |f| %>
+    <font color='red'> <%= flash[:error] %> </font>
+
+    <body>
+
+    <br>   <br>
+    <H1 ALIGN="CENTER">ENTER USERNAME AND PASSWORD</H1>
+    <br>
+    <div style="width:350px; margin:0 auto;">
+    <p>  <b>
+      <%= f.label :unity_id, "Username" %>
+      <%= f.text_field :unity_id %>
+    </b>
+    </p>
+
+    <p> <b>
+      <%= f.label :password, "Password" %>
+      <%= f.password_field :password %>
+   </b> </p>
+    <p align="center">
+      <%= f.submit "Sign In" %>
+    </p>
+        </div>
+    </body>
+<% end %>

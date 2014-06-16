@@ -1,0 +1,38 @@
+<body>
+<br>
+<h1 align="center">    </h1>
+
+<div style="width:350px; margin:0 auto;">
+<h1>Listing posts</h1>
+
+<table>
+  <tr>
+    <th>Post desc</th>
+    <th>User</th>
+    <th>Post date</th>
+    <th>Tag</th>
+    <th>Category</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @posts.each do |post| %>
+  <tr>
+    <td><%= post.post_desc %></td>
+    <td><%= post.user %></td>
+    <td><%= post.post_date %></td>
+    <td><%= post.tag %></td>
+    <td><%= post.category %></td>
+    <td><%= link_to 'Show', post_path(post) %></td>
+    <td><%= link_to 'Edit', edit_post_path(post) %></td>
+    <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Post', new_post_path %>
+    </div>
+</body>

@@ -1,0 +1,44 @@
+<%= form_for :date_range, url: report_path, method: :get do |f| %>
+    <font color='red'> <%= flash[:error] %> </font>
+
+    <p>
+      <%= f.label :select_from_date, "From " %>
+      <%= date_select("from_date", "date", :default => Date.today,
+      :order => [:month, :day, :year], :start_year => Date.today.year,
+      :end_year => Date.today.year - 1) %>
+    </p>
+
+    <p>
+      <%= f.label :select_to_date, "To " %>
+      <%= date_select("to_date", "date", :default => Date.today,
+                      :order => [:month, :day, :year], :start_year => Date.today.year,
+                      :end_year => Date.today.year - 1) %>
+    </p>
+      <%= f.submit "Submit" %>
+    </p>
+<% end %>
+
+
+
+<% if !(@posts.nil?) %>
+    <table>
+      <tr>
+        <td><b>Post</b></td>
+        <td><b>Unity Id</b></td>
+        <td><b>Name</b></td>
+        <td><b>No of Votes</b></td>
+        <td><b>No of Comments</b></td>
+      </tr>
+      <%@posts.each do |post|%>
+        <tr>
+            <td> <%= post.title %></td>
+            <td><%= post.unity_id %></td>
+            <td><%= post.user_name%></td>
+            <td><%= post.votes.count() %></td>
+            <td><%= post.comments.count() %></td>
+        </tr>
+
+      <%end%>
+    </table>
+<%end%>
+<%= link_to 'Back', '/welcome' %>

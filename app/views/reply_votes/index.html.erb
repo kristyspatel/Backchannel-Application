@@ -1,0 +1,31 @@
+<body>
+<br>
+<h1 align="center">Listing Reply Votes</h1>
+
+<div style="width:350px; margin:0 auto;">
+
+<table>
+  <tr>
+    <th>Reply</th>
+    <th>User</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @reply_votes.each do |reply_vote| %>
+  <tr>
+    <td><%= reply_vote.reply %></td>
+    <td><%= reply_vote.user %></td>
+    <td><%= link_to 'Show', reply_vote %></td>
+    <td><%= link_to 'Edit', edit_reply_vote_path(reply_vote) %></td>
+    <td><%= link_to 'Destroy', reply_vote, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Reply vote', new_reply_vote_path %>
+</div>
+</body>

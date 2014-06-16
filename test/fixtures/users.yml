@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+user_one:
+  unity_id: unityid1
+  first_name: fname
+  last_name: lname
+  password: flname
+  role: U
+  last_visited: <%= Time.parse('2013-09-25 17:18:46') %>
+  created_at: <%= Time.now.to_s(:db) %>
+  updated_at: <%= Time.now.to_s(:db) %>
+
+user_two:
+  unity_id: unityid2
+  first_name: shini
+  last_name: arora
+  password: shiniarora
+  role: A
+  last_visited: <%= Time.parse('2013-09-25 17:18:46') %>
+  created_at: <%= Time.now.to_s(:db) %>
+  updated_at: <%= Time.now.to_s(:db) %>

@@ -1,0 +1,38 @@
+<body>
+<br>
+<b><h1 align="center"> New Comment</h1> </b>
+
+<div style="width:350px; margin:0 auto;">
+
+<% provide(:title, 'NEW COMMENT') %>
+
+
+<div class="row">
+  <div class="span6 offset3">
+    <%= form_for(@comment) do |f| %>
+
+        <% if @comment.errors.any? %>
+            <div id="error_explanation">
+              <h2><%= pluralize(@comment.errors.count, "error") %> prohibited this comment from being saved:</h2>
+
+              <ul>
+                <% @comment.errors.full_messages.each do |msg| %>
+                    <li><%= msg %></li>
+                <% end %>
+              </ul>
+            </div>
+        <% end %>
+
+        <%= f.label :comment_desc %>
+        <%= f.text_field :comment_desc %>
+
+        <%= f.hidden_field :post, value: @comment.post.id %>
+
+        <%= f.submit "Submit", class: "btn btn-large btn-primary" %>
+    <% end %>
+  </div>
+</div>
+
+<%= link_to 'Back', comments_path %>
+ </div>
+</body>

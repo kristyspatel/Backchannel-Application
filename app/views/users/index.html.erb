@@ -1,0 +1,45 @@
+<body>
+<br>
+<h1 align="center">Listing Users</h1>
+<p id="notice"><%= notice %></p>
+<div style="width:350px; margin:0 auto;">
+
+<table>
+  <tr>
+    <th>Unity</th>
+    <th>First name</th>
+    <th>Last name</th>
+    <th>Password</th>
+    <th>Role</th>
+
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+<% @users.each do |user| %>
+  <tr>
+    <td><%= user.unity_id %></td>
+    <td><%= user.first_name %></td>
+    <td><%= user.last_name %></td>
+    <td><%= user.password %></td>
+    <td><%= user.role %></td>
+
+
+    <%if current_user.role == 'S'  %>
+        <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+     <%end%>
+    <% if current_user.role == 'A' && current_user == user  %>
+        <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <%end%>
+    <% if current_user.role == 'A' && user.role=='U'  %>
+        <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <%end%>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'Back', '/welcome' %>
+ </div>
+</body>

@@ -1,0 +1,29 @@
+
+<body>
+<br>
+<h1 align="center">COMMENTS</h1>
+
+<div style="width:350px; margin:0 auto;">
+
+    <p id="notice"><%= notice %></p>
+
+<p>
+  <b>Comment desc:</b>
+  <%= @comment.comment_desc %>
+</p>
+
+<p>
+  <b>Post:</b>
+  <%= @comment.post %>
+</p>
+
+<p>
+  <b>User:</b>
+  <%= @comment.user %>
+</p>
+
+
+<%= link_to 'Edit', edit_comment_path(@comment) %> |
+<%= link_to 'Back', comments_path %>
+</div>
+</body>

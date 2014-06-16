@@ -1,0 +1,26 @@
+
+<body>
+<br><br><br><br>
+<h1 align="center"> SEARCH RESULTS </h1>
+<div style="width:350px; margin:0 auto;"><%= form_tag("/search", method: "get") do %>
+<%= form_tag("/search", method: "get") do %>   
+<b> <%= label_tag(:q, "Search by:") %>  </b>
+
+    <%= select_tag(:search_type, options_for_select([['Category',1], ['Tag',2],['Content',3],['User',4]])) %>
+
+    <%= text_field_tag(:q) %>
+    <%= submit_tag("Search") %>
+<% end %>
+
+<b><a href="/welcome">Back</a>  </b>  <br><br> <br>
+
+
+<% @posts.each do |post| %>
+    <p><b><%= post.user.first_name %> <%= post.user.last_name %></p></b>
+    <p> <%= post.post_desc %>  &nbsp;&nbsp;&nbsp;&nbsp;</p>
+
+    <%= link_to 'Show',post_path(post)%>
+
+<% end %>
+    </div>
+  </body>
